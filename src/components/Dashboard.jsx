@@ -1,3 +1,5 @@
+"use client";
+
 import { usePokemon } from "../context/PokemonContext";
 import {
   DashboardContainer,

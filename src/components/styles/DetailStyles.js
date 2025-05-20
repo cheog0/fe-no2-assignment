@@ -6,11 +6,11 @@ export const DetailContainer = styled.div`
   padding: 2rem;
   background-color: #ffd699;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const DetailCard = styled.div`
@@ -32,7 +32,7 @@ export const DetailHeader = styled.div`
 `;
 
 export const BackButton = styled.button`
-  background-color: rgb(236, 181, 70);
+  background-color: rgb(245, 205, 113);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
