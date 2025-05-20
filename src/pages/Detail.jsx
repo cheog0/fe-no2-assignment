@@ -20,7 +20,6 @@ const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // ID로 포켓몬 찾기
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
 
   // 포켓몬이 없는 경우 처리
