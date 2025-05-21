@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const HomeContainer = styled.div`
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(135deg, #ffe4b8 0%, #ffd699 100%);
+  background-color: #ffd699;
   position: fixed;
   top: 0;
   left: 0;
