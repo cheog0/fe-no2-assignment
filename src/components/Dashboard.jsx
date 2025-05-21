@@ -13,7 +13,6 @@ import {
 } from "./styles/DexStyles";
 
 const Dashboard = () => {
-  // Context에서 상태와 함수 가져오기
   const { selectedPokemons, removePokemon } = usePokemon();
 
   return (
