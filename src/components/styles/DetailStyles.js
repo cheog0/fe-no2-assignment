@@ -152,3 +152,23 @@ export const IdBadge = styled.span`
   font-size: 0.9rem;
   margin-left: 1rem;
 `;
+
+export const AddButton = styled.button`
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #45a049;
+  }
+
+  &:active {
+    background-color: #3d8b40;
+  }
+`;

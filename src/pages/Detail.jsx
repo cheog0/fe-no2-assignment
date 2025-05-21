@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { MOCK_DATA } from "../data/mockData";
+import { usePokemon } from "../context/PokemonContext";
 import {
   DetailContainer,
   DetailCard,
@@ -14,13 +15,16 @@ import {
   TypeBadge,
   Description,
   IdBadge,
+  AddButton,
 } from "../components/styles/DetailStyles";
 
 const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { selectedPokemons, addPokemon } = usePokemon();
 
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
+  const isSelected = selectedPokemons.some((p) => p.id === Number.parseInt(id));
 
   // 포켓몬이 없는 경우 처리
   if (!pokemon) {
@@ -32,11 +36,18 @@ const Detail = () => {
     );
   }
 
+  const handleAddClick = () => {
+    addPokemon(pokemon);
+  };
+
   return (
     <DetailContainer>
       <DetailCard>
         <DetailHeader>
           <BackButton onClick={() => navigate("/dex")}>← 돌아가기</BackButton>
+          {!isSelected && (
+            <AddButton onClick={handleAddClick}>포켓몬 추가</AddButton>
+          )}
         </DetailHeader>
 
         <DetailContent>
