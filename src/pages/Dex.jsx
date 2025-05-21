@@ -12,7 +12,6 @@ import {
 } from "../components/styles/DexStyles";
 
 const Dex = () => {
-  // Context에서 상태와 함수 가져오기
   const { selectedPokemons } = usePokemon();
 
   return (
