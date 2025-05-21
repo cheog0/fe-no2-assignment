@@ -18,7 +18,7 @@ export const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 2rem;
   color: #e3350d;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
 
   @media (max-width: 768px) {
