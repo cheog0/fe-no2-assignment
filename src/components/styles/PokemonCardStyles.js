@@ -97,15 +97,13 @@ export const TypeBadge = styled.span`
 export const AddButton = styled.button`
   width: 100%;
   padding: 0.75rem;
-  background-color: ${(props) =>
-    props.children === "추가됨" ? "#6c757d" : "#e3350d"};
+  background-color: ${(props) => (props.isSelected ? "#6c757d" : "#e3350d")};
   color: white;
   font-weight: 500;
   border-radius: 5px;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${(props) =>
-      props.children === "추가됨" ? "#5a6268" : "#c62b0a"};
+    background-color: ${(props) => (props.isSelected ? "#6c757d" : "#c62b0a")};
   }
 `;
