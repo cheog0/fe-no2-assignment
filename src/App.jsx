@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+"use client";
+
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import GlobalStyles from "./components/styles/GlobalStyles";
+import Home from "./pages/Home";
+import Dex from "./pages/Dex";
+import Detail from "./pages/Detail";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedPokemons, setSelectedPokemons] = useState([]);
+
+  // 포켓몬 추가 함수
+  const addPokemon = (pokemon) => {
+    // 이미 선택된 포켓몬인지 확인
+    if (selectedPokemons.some((p) => p.id === pokemon.id)) {
+      alert("이미 선택된 포켓몬입니다.");
+      return;
+    }
+
+    // 최대 6마리 제한
+    if (selectedPokemons.length >= 6) {
+      alert("더 이상 선택할 수 없습니다.");
+      return;
+    }
+
+    setSelectedPokemons([...selectedPokemons, pokemon]);
+  };
+
+  // 포켓몬 제거 함수
+  const removePokemon = (id) => {
+    setSelectedPokemons(
+      selectedPokemons.filter((pokemon) => pokemon.id !== id)
+    );
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <GlobalStyles />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/dex"
+          element={
+            <Dex
+              selectedPokemons={selectedPokemons}
+              addPokemon={addPokemon}
+              removePokemon={removePokemon}
+            />
+          }
+        />
+        <Route
+          path="/pokemon/:id"
+          element={
+            <Detail
+              selectedPokemons={selectedPokemons}
+              addPokemon={addPokemon}
+            />
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
