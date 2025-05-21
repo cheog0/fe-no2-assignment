@@ -3,7 +3,7 @@ import styled from "styled-components";
 // 추가: 전체 페이지 래퍼 스타일
 export const DexPageWrapper = styled.div`
   width: 100%;
-  background-color: #ffe4b8;
+  background-color: #ffd699;
 `;
 
 export const DexContainer = styled.div`
@@ -11,7 +11,7 @@ export const DexContainer = styled.div`
   flex-direction: column;
   min-height: 100vh;
   padding: 2rem;
-  background-color: #ffe4b8;
+  background-color: #ffd699;
   max-width: 1200px;
   margin: 0 auto;
 
