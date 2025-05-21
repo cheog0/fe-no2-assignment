@@ -10,7 +10,6 @@ function App() {
 
   // 포켓몬 추가 함수
   const addPokemon = (pokemon) => {
-    // 이미 선택된 포켓몬인지 확인
     if (selectedPokemons.some((p) => p.id === pokemon.id)) {
       alert("이미 선택된 포켓몬입니다.");
       return;
