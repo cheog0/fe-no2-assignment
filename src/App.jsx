@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GlobalStyles from "./components/styles/GlobalStyles";
