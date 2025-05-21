@@ -910,7 +910,7 @@ export const MOCK_DATA = [
   },
   {
     id: 102,
-    name: "아라리",
+    name: "아리리",
     type: ["풀", "에스퍼"],
     image:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/102.png",
