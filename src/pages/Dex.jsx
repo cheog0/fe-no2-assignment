@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
-import MOCK_DATA from "../data/mockData"; // default import로 변경
+import MOCK_DATA from "../data/mockData";
 import { usePokemon } from "../context/PokemonContext";
 import {
   DexContainer,
