@@ -26,7 +26,6 @@ const Detail = () => {
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
   const isSelected = selectedPokemons.some((p) => p.id === Number.parseInt(id));
 
-  // 포켓몬이 없는 경우 처리
   if (!pokemon) {
     return (
       <DetailContainer>
