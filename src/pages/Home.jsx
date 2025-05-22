@@ -1,3 +1,5 @@
+"use client";
+
 import { useNavigate } from "react-router-dom";
 import {
   HomeContainer,
@@ -16,8 +18,8 @@ const Home = () => {
   return (
     <HomeContainer>
       <PokemonImage
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-        alt="Pikachu"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+        alt="Pokemon Logo"
       />
       <Title>포켓몬 도감</Title>
 
