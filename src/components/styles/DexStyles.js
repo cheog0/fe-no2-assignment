@@ -1,5 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
+// 추가: 전체 페이지 래퍼 스타일
 export const DexPageWrapper = styled.div`
   width: 100%;
   background-color: #ffd699;
@@ -38,6 +40,30 @@ export const DexTitle = styled.h1`
   color: #e3350d;
 `;
 
+export const HomeButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #e3350d;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #c62b0a;
+  }
+
+  &::before {
+    content: "🏠";
+    font-size: 1.5rem;
+  }
+`;
+
 export const DexContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,7 +82,7 @@ export const DashboardContainer = styled.div`
 export const DashboardTitle = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #333;
+  color: #e3350d;
   display: flex;
   align-items: center;
   justify-content: space-between;
