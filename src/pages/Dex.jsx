@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
-import { MOCK_DATA } from "../data/mockData";
+import MOCK_DATA from "../data/mockData"; // default import로 변경
 import { usePokemon } from "../context/PokemonContext";
 import {
   DexContainer,
@@ -9,6 +9,7 @@ import {
   DexTitle,
   DexContent,
   DexPageWrapper,
+  HomeButton,
 } from "../components/styles/DexStyles";
 
 const Dex = () => {
@@ -19,7 +20,7 @@ const Dex = () => {
       <DexContainer>
         <DexHeader>
           <DexTitle>포켓몬 도감</DexTitle>
-          <Link to="/">홈으로 돌아가기</Link>
+          <HomeButton to="/" />
         </DexHeader>
 
         <DexContent>
