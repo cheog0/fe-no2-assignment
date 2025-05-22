@@ -102,8 +102,14 @@ export const AddButton = styled.button`
   font-weight: 500;
   border-radius: 5px;
   transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => (props.isSelected ? "#6c757d" : "#c62b0a")};
+  }
+
+  &:active {
+    background-color: ${(props) => (props.isSelected ? "#6c757d" : "#b32709")};
   }
 `;

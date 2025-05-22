@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// 추가: 전체 페이지 래퍼 스타일
 export const DexPageWrapper = styled.div`
   width: 100%;
   background-color: #ffd699;
