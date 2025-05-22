@@ -1,5 +1,3 @@
-"use client";
-
 import { useNavigate } from "react-router-dom";
 import { usePokemon } from "../context/PokemonContext";
 import {
@@ -29,12 +27,12 @@ const PokemonCard = ({ pokemon, isSelected }) => {
   return (
     <Card>
       <CardImage onClick={handleCardClick}>
-        <PokemonImage src={pokemon.image} alt={pokemon.name} />
+        <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
       </CardImage>
       <CardContent>
-        <PokemonName>{pokemon.name}</PokemonName>
+        <PokemonName>{pokemon.korean_name}</PokemonName>
         <TypeContainer>
-          {pokemon.type.map((type, index) => (
+          {pokemon.types.map((type, index) => (
             <TypeBadge key={index} type={type}>
               {type}
             </TypeBadge>
