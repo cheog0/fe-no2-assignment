@@ -17,7 +17,7 @@ export const HomeContainer = styled.div`
 export const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 2rem;
-  color: #e3350d;
+  color: #3069b3;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 
@@ -48,23 +48,10 @@ export const StartButton = styled.button`
 `;
 
 export const PokemonImage = styled.img`
-  width: 200px;
+  width: 400px;
   height: auto;
   margin-bottom: 2rem;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-  animation: float 3s ease-in-out infinite;
-
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
 
   @media (max-width: 768px) {
     width: 150px;
