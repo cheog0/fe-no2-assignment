@@ -15,13 +15,12 @@ import {
 } from "./styles/DexStyles";
 
 const Dashboard = () => {
-  // Context에서 상태와 함수 가져오기
   const { selectedPokemons, removePokemon } = usePokemon();
 
   return (
     <DashboardContainer>
       <DashboardTitle>
-        내 포켓몬
+        나만의 포켓몬
         <DashboardCount>{selectedPokemons.length}/6</DashboardCount>
       </DashboardTitle>
 
@@ -36,8 +35,11 @@ const Dashboard = () => {
               <RemoveButton onClick={() => removePokemon(pokemon.id)}>
                 X
               </RemoveButton>
-              <SelectedPokemonImage src={pokemon.image} alt={pokemon.name} />
-              <SelectedPokemonName>{pokemon.name}</SelectedPokemonName>
+              <SelectedPokemonImage
+                src={pokemon.img_url}
+                alt={pokemon.korean_name}
+              />
+              <SelectedPokemonName>{pokemon.korean_name}</SelectedPokemonName>
             </SelectedPokemonItem>
           ))}
         </SelectedPokemonList>
