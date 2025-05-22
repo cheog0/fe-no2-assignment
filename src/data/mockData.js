@@ -730,7 +730,7 @@ const MOCK_DATA = [
     korean_name: "셀러",
     types: ["물"],
     id: 90,
-    description: "물 타입의 포켓몬으로, 조개 모양을 하고 있습���다.",
+    description: "물 타입의 포켓몬으로, 조개 모양을 하고 있습니다.",
   },
   {
     img_url:
