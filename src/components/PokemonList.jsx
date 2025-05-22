@@ -3,7 +3,6 @@ import { usePokemon } from "../context/PokemonContext";
 import { PokemonListContainer, PokemonGrid } from "./styles/DexStyles";
 
 const PokemonList = ({ pokemons }) => {
-  // Context에서 상태 가져오기
   const { selectedPokemons } = usePokemon();
 
   return (
