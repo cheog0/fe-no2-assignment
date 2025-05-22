@@ -15,7 +15,6 @@ import {
 
 const PokemonCard = ({ pokemon, isSelected }) => {
   const navigate = useNavigate();
-  // Context에서 함수 가져오기
   const { addPokemon } = usePokemon();
 
   const handleCardClick = () => {
@@ -41,7 +40,7 @@ const PokemonCard = ({ pokemon, isSelected }) => {
             </TypeBadge>
           ))}
         </TypeContainer>
-        <AddButton onClick={handleAddClick}>
+        <AddButton onClick={handleAddClick} isSelected={isSelected}>
           {isSelected ? "추가됨" : "추가"}
         </AddButton>
       </CardContent>
