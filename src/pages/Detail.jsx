@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { MOCK_DATA } from "../data/mockData";
+import MOCK_DATA from "../data/mockData";
 import { usePokemon } from "../context/PokemonContext";
 import {
   DetailContainer,
@@ -45,34 +45,32 @@ const Detail = () => {
       <DetailCard>
         <DetailHeader>
           <BackButton onClick={() => navigate("/dex")}>← 돌아가기</BackButton>
-          {!isSelected && (
-            <AddButton onClick={handleAddClick}>포켓몬 추가</AddButton>
-          )}
         </DetailHeader>
 
         <DetailContent>
           <ImageContainer>
             <DetailImage
-              src={pokemon.image || "/placeholder.svg"}
-              alt={pokemon.name}
+              src={pokemon.img_url || "/placeholder.svg"}
+              alt={pokemon.korean_name}
             />
           </ImageContainer>
 
           <InfoContainer>
-            <PokemonName>
-              {pokemon.name}
-              <IdBadge>#{pokemon.id}</IdBadge>
-            </PokemonName>
-
+            <div>
+              <IdBadge>#{String(pokemon.id).padStart(3, "0")}</IdBadge>
+              <PokemonName>{pokemon.korean_name}</PokemonName>
+            </div>
             <TypeContainer>
-              {pokemon.type.map((type, index) => (
+              {pokemon.types.map((type, index) => (
                 <TypeBadge key={index} type={type}>
                   {type}
                 </TypeBadge>
               ))}
             </TypeContainer>
-
             <Description>{pokemon.description}</Description>
+            {!isSelected && (
+              <AddButton onClick={handleAddClick}>포켓몬 추가하기</AddButton>
+            )}
           </InfoContainer>
         </DetailContent>
       </DetailCard>
