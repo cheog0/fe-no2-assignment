@@ -1,4 +1,3 @@
-import { usePokemon } from "../context/PokemonContext";
 import {
   DashboardContainer,
   DashboardTitle,
@@ -12,9 +11,7 @@ import {
   EmptyText,
 } from "./styles/DexStyles";
 
-const Dashboard = () => {
-  const { selectedPokemons, removePokemon } = usePokemon();
-
+const Dashboard = ({ selectedPokemons, removePokemon }) => {
   return (
     <DashboardContainer>
       <DashboardTitle>

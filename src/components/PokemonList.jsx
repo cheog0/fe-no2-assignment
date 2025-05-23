@@ -1,10 +1,7 @@
 import PokemonCard from "./PokemonCard";
-import { usePokemon } from "../context/PokemonContext";
 import { PokemonListContainer, PokemonGrid } from "./styles/DexStyles";
 
-const PokemonList = ({ pokemons }) => {
-  const { selectedPokemons } = usePokemon();
-
+const PokemonList = ({ pokemons, selectedPokemons, addPokemon }) => {
   return (
     <PokemonListContainer>
       <PokemonGrid>
@@ -13,6 +10,7 @@ const PokemonList = ({ pokemons }) => {
             key={pokemon.id}
             pokemon={pokemon}
             isSelected={selectedPokemons.some((p) => p.id === pokemon.id)}
+            addPokemon={addPokemon}
           />
         ))}
       </PokemonGrid>

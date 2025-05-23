@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { usePokemon } from "../context/PokemonContext";
 import {
   Card,
   CardImage,
@@ -11,9 +10,8 @@ import {
   AddButton,
 } from "./styles/PokemonCardStyles";
 
-const PokemonCard = ({ pokemon, isSelected }) => {
+const PokemonCard = ({ pokemon, isSelected, addPokemon }) => {
   const navigate = useNavigate();
-  const { addPokemon } = usePokemon();
 
   const handleCardClick = () => {
     navigate(`/pokemon/${pokemon.id}`);
