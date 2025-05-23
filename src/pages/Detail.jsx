@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import MOCK_DATA from "../data/mockData";
-import { usePokemon } from "../context/PokemonContext";
 import {
   DetailContainer,
   DetailCard,
@@ -18,10 +17,9 @@ import {
   AddButton,
 } from "../components/styles/DetailStyles";
 
-const Detail = () => {
+const Detail = ({ selectedPokemons, addPokemon }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { selectedPokemons, addPokemon } = usePokemon();
 
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
   const isSelected = selectedPokemons.some((p) => p.id === Number.parseInt(id));
