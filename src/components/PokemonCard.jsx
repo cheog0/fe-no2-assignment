@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { usePokemon } from "../context/PokemonContext";
 import {
   Card,
   CardImage,
@@ -10,8 +11,9 @@ import {
   AddButton,
 } from "./styles/PokemonCardStyles";
 
-const PokemonCard = ({ pokemon, isSelected, addPokemon }) => {
+const PokemonCard = ({ pokemon, isSelected }) => {
   const navigate = useNavigate();
+  const { addPokemon } = usePokemon();
 
   const handleCardClick = () => {
     navigate(`/pokemon/${pokemon.id}`);
@@ -25,12 +27,12 @@ const PokemonCard = ({ pokemon, isSelected, addPokemon }) => {
   return (
     <Card>
       <CardImage onClick={handleCardClick}>
-        <PokemonImage src={pokemon.image} alt={pokemon.name} />
+        <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
       </CardImage>
       <CardContent>
-        <PokemonName>{pokemon.name}</PokemonName>
+        <PokemonName>{pokemon.korean_name}</PokemonName>
         <TypeContainer>
-          {pokemon.type.map((type, index) => (
+          {pokemon.types.map((type, index) => (
             <TypeBadge key={index} type={type}>
               {type}
             </TypeBadge>
