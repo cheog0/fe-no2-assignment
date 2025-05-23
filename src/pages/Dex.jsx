@@ -1,7 +1,6 @@
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
 import MOCK_DATA from "../data/mockData";
-import { usePokemon } from "../context/PokemonContext";
 import {
   DexContainer,
   DexHeader,
@@ -11,9 +10,7 @@ import {
   HomeButton,
 } from "../components/styles/DexStyles";
 
-const Dex = () => {
-  const { selectedPokemons } = usePokemon();
-
+const Dex = ({ selectedPokemons, addPokemon, removePokemon }) => {
   return (
     <DexPageWrapper>
       <DexContainer>
@@ -23,8 +20,15 @@ const Dex = () => {
         </DexHeader>
 
         <DexContent>
-          <Dashboard />
-          <PokemonList pokemons={MOCK_DATA} />
+          <Dashboard
+            selectedPokemons={selectedPokemons}
+            removePokemon={removePokemon}
+          />
+          <PokemonList
+            pokemons={MOCK_DATA}
+            selectedPokemons={selectedPokemons}
+            addPokemon={addPokemon}
+          />
         </DexContent>
       </DexContainer>
     </DexPageWrapper>
