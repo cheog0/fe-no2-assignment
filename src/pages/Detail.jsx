@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { MOCK_DATA } from "../data/mockData";
+import MOCK_DATA from "../data/mockData";
+import { usePokemon } from "../context/PokemonContext";
 import {
   DetailContainer,
   DetailCard,
@@ -14,16 +15,17 @@ import {
   TypeBadge,
   Description,
   IdBadge,
+  AddButton,
 } from "../components/styles/DetailStyles";
 
-const Detail = ({ selectedPokemons, addPokemon }) => {
+const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { selectedPokemons, addPokemon } = usePokemon();
 
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
   const isSelected = selectedPokemons.some((p) => p.id === Number.parseInt(id));
 
-  // 포켓몬이 없는 경우 처리
   if (!pokemon) {
     return (
       <DetailContainer>
@@ -42,36 +44,32 @@ const Detail = ({ selectedPokemons, addPokemon }) => {
       <DetailCard>
         <DetailHeader>
           <BackButton onClick={() => navigate("/dex")}>← 돌아가기</BackButton>
-          {!isSelected && (
-            <button onClick={handleAddClick} className="add-button">
-              포켓몬 추가
-            </button>
-          )}
         </DetailHeader>
 
         <DetailContent>
           <ImageContainer>
             <DetailImage
-              src={pokemon.image || "/placeholder.svg"}
-              alt={pokemon.name}
+              src={pokemon.img_url || "/placeholder.svg"}
+              alt={pokemon.korean_name}
             />
           </ImageContainer>
 
           <InfoContainer>
-            <PokemonName>
-              {pokemon.name}
-              <IdBadge>#{pokemon.id}</IdBadge>
-            </PokemonName>
-
+            <div>
+              <IdBadge>#{String(pokemon.id).padStart(3, "0")}</IdBadge>
+              <PokemonName>{pokemon.korean_name}</PokemonName>
+            </div>
             <TypeContainer>
-              {pokemon.type.map((type, index) => (
+              {pokemon.types.map((type, index) => (
                 <TypeBadge key={index} type={type}>
                   {type}
                 </TypeBadge>
               ))}
             </TypeContainer>
-
             <Description>{pokemon.description}</Description>
+            {!isSelected && (
+              <AddButton onClick={handleAddClick}>포켓몬 추가하기</AddButton>
+            )}
           </InfoContainer>
         </DetailContent>
       </DetailCard>
