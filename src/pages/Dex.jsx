@@ -1,7 +1,7 @@
+import { useSelector } from "react-redux";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
 import MOCK_DATA from "../data/mockData";
-import { usePokemon } from "../context/PokemonContext";
 import {
   DexContainer,
   DexHeader,
@@ -12,7 +12,9 @@ import {
 } from "../components/styles/DexStyles";
 
 const Dex = () => {
-  const { selectedPokemons } = usePokemon();
+  const selectedPokemons = useSelector(
+    (state) => state.pokemon.selectedPokemons
+  );
 
   return (
     <DexPageWrapper>

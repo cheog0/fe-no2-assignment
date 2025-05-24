@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addPokemon, removePokemon } from "../store/pokemonSlice";
 import MOCK_DATA from "../data/mockData";
-import { usePokemon } from "../context/PokemonContext";
 import {
   DetailContainer,
   DetailCard,
@@ -21,7 +22,10 @@ import {
 const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { selectedPokemons, addPokemon } = usePokemon();
+  const dispatch = useDispatch();
+  const selectedPokemons = useSelector(
+    (state) => state.pokemon.selectedPokemons
+  );
 
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
   const isSelected = selectedPokemons.some((p) => p.id === Number.parseInt(id));
@@ -36,7 +40,11 @@ const Detail = () => {
   }
 
   const handleAddClick = () => {
-    addPokemon(pokemon);
+    dispatch(addPokemon(pokemon));
+  };
+
+  const handleRemoveClick = () => {
+    dispatch(removePokemon(pokemon.id));
   };
 
   return (
@@ -67,7 +75,14 @@ const Detail = () => {
               ))}
             </TypeContainer>
             <Description>{pokemon.description}</Description>
-            {!isSelected && (
+            {isSelected ? (
+              <AddButton
+                onClick={handleRemoveClick}
+                style={{ backgroundColor: "#ff4444" }}
+              >
+                포켓몬 제거하기
+              </AddButton>
+            ) : (
               <AddButton onClick={handleAddClick}>포켓몬 추가하기</AddButton>
             )}
           </InfoContainer>
