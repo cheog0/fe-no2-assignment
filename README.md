@@ -51,5 +51,5 @@
 
 ## 🔗 기타 정보
 
-- Redux 브랜치: `redux-toolkits`
+- Redux 브랜치: `main`
 - 주요 기술 스택: React, Redux Toolkit, react-toastify, styled-components
