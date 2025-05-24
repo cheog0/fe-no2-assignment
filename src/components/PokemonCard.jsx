@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { usePokemon } from "../context/PokemonContext";
+import { useDispatch } from "react-redux";
+import { addPokemon } from "../store/pokemonSlice";
 import {
   Card,
   CardImage,
@@ -13,7 +14,7 @@ import {
 
 const PokemonCard = ({ pokemon, isSelected }) => {
   const navigate = useNavigate();
-  const { addPokemon } = usePokemon();
+  const dispatch = useDispatch();
 
   const handleCardClick = () => {
     navigate(`/pokemon/${pokemon.id}`);
@@ -21,7 +22,7 @@ const PokemonCard = ({ pokemon, isSelected }) => {
 
   const handleAddClick = (e) => {
     e.stopPropagation();
-    addPokemon(pokemon);
+    dispatch(addPokemon(pokemon));
   };
 
   return (

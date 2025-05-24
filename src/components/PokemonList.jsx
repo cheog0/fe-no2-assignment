@@ -1,9 +1,11 @@
+import { useSelector } from "react-redux";
 import PokemonCard from "./PokemonCard";
-import { usePokemon } from "../context/PokemonContext";
 import { PokemonListContainer, PokemonGrid } from "./styles/DexStyles";
 
 const PokemonList = ({ pokemons }) => {
-  const { selectedPokemons } = usePokemon();
+  const selectedPokemons = useSelector(
+    (state) => state.pokemon.selectedPokemons
+  );
 
   return (
     <PokemonListContainer>

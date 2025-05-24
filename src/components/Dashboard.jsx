@@ -1,6 +1,7 @@
 "use client";
 
-import { usePokemon } from "../context/PokemonContext";
+import { useSelector, useDispatch } from "react-redux";
+import { removePokemon } from "../store/pokemonSlice";
 import {
   DashboardContainer,
   DashboardTitle,
@@ -15,7 +16,14 @@ import {
 } from "./styles/DexStyles";
 
 const Dashboard = () => {
-  const { selectedPokemons, removePokemon } = usePokemon();
+  const dispatch = useDispatch();
+  const selectedPokemons = useSelector(
+    (state) => state.pokemon.selectedPokemons
+  );
+
+  const handleRemove = (id) => {
+    dispatch(removePokemon(id));
+  };
 
   return (
     <DashboardContainer>
@@ -32,7 +40,7 @@ const Dashboard = () => {
         <SelectedPokemonList>
           {selectedPokemons.map((pokemon) => (
             <SelectedPokemonItem key={pokemon.id}>
-              <RemoveButton onClick={() => removePokemon(pokemon.id)}>
+              <RemoveButton onClick={() => handleRemove(pokemon.id)}>
                 X
               </RemoveButton>
               <SelectedPokemonImage
