@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
@@ -15,28 +15,35 @@ import {
 
 const Dex = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const selectedPokemons = useSelector(
     (state) => state.pokemon.selectedPokemons
   );
 
-  // 스크롤 위치 저장
+  // 스크롤 위치 저장 및 복원
   useEffect(() => {
-    // 페이지를 떠날 때 스크롤 위치 저장
-    const handleBeforeUnload = () => {
-      sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
+    // Detail 페이지로 이동할 때 스크롤 위치 저장
+    const handlePokemonClick = (e) => {
+      const card = e.target.closest("[data-pokemon-card]");
+      if (card) {
+        sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
+      }
     };
 
     // 페이지에 들어올 때 저장된 스크롤 위치로 이동
     const savedPosition = sessionStorage.getItem("dexScrollPosition");
     if (savedPosition) {
-      window.scrollTo(0, parseInt(savedPosition));
-      // 스크롤 위치 복원 후 저장된 값 삭제
-      sessionStorage.removeItem("dexScrollPosition");
+      // setTimeout을 사용하여 렌더링 후 스크롤 위치 복원
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedPosition));
+        // 스크롤 위치 복원 후 저장된 값 삭제
+        sessionStorage.removeItem("dexScrollPosition");
+      }, 0);
     }
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("click", handlePokemonClick);
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("click", handlePokemonClick);
     };
   }, [location]);
 

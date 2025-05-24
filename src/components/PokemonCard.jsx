@@ -26,7 +26,7 @@ const PokemonCard = ({ pokemon, isSelected }) => {
   };
 
   return (
-    <Card>
+    <Card data-pokemon-card onClick={handleCardClick}>
       <CardImage onClick={handleCardClick}>
         <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
       </CardImage>
