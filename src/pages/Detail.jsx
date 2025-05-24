@@ -1,7 +1,8 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addPokemon, removePokemon } from "../store/pokemonSlice";
 import MOCK_DATA from "../data/mockData";
+import { useEffect } from "react";
 import {
   DetailContainer,
   DetailCard,
@@ -22,6 +23,7 @@ import {
 const Detail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const selectedPokemons = useSelector(
     (state) => state.pokemon.selectedPokemons
@@ -29,6 +31,24 @@ const Detail = () => {
 
   const pokemon = MOCK_DATA.find((p) => p.id === Number.parseInt(id));
   const isSelected = selectedPokemons.some((p) => p.id === Number.parseInt(id));
+
+  // 페이지를 떠날 때 스크롤 위치 저장
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
+    };
+
+    // 브라우저 뒤로 가기 버튼 감지
+    window.addEventListener("popstate", handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("popstate", handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      // 컴포넌트가 언마운트될 때도 스크롤 위치 저장
+      handleBeforeUnload();
+    };
+  }, [location]);
 
   if (!pokemon) {
     return (
@@ -48,6 +68,7 @@ const Detail = () => {
   };
 
   const handleBackClick = () => {
+    // 현재 스크롤 위치 저장
     sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
     navigate("/dex");
   };
