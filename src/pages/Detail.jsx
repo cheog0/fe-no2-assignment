@@ -68,10 +68,21 @@ const Detail = () => {
   };
 
   const handleBackClick = () => {
-    // 현재 스크롤 위치 저장
-    sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
-    navigate("/dex");
+    // 현재 history state의 scrollY 값을 유지한 채로 Dex 페이지로 이동
+    const currentState = window.history.state || {};
+    navigate("/dex", {
+      replace: true,
+      state: { ...currentState },
+    });
   };
+
+  // 컴포넌트가 마운트될 때 이전 페이지의 스크롤 위치 저장
+  useEffect(() => {
+    const previousState = window.history.state || {};
+    if (previousState.scrollY) {
+      window.history.replaceState({ ...previousState }, "");
+    }
+  }, []);
 
   return (
     <DetailContainer>

@@ -20,30 +20,39 @@ const Dex = () => {
     (state) => state.pokemon.selectedPokemons
   );
 
-  // 스크롤 위치 저장 및 복원
+  // 스크롤 위치 관리
   useEffect(() => {
-    // Detail 페이지로 이동할 때 스크롤 위치 저장
+    // 페이지에 들어올 때 저장된 스크롤 위치로 이동
+    if (location.state?.scrollY) {
+      window.scrollTo(0, location.state.scrollY);
+    }
+
+    // Detail 페이지로 이동할 때 현재 스크롤 위치 저장
     const handlePokemonClick = (e) => {
       const card = e.target.closest("[data-pokemon-card]");
       if (card) {
-        sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
+        // 현재 스크롤 위치를 history state에 저장
+        window.history.replaceState(
+          { ...window.history.state, scrollY: window.pageYOffset },
+          ""
+        );
       }
     };
 
-    // 페이지에 들어올 때 저장된 스크롤 위치로 이동
-    const savedPosition = sessionStorage.getItem("dexScrollPosition");
-    if (savedPosition) {
-      // setTimeout을 사용하여 렌더링 후 스크롤 위치 복원
-      setTimeout(() => {
-        window.scrollTo(0, parseInt(savedPosition));
-        // 스크롤 위치 복원 후 저장된 값 삭제
-        sessionStorage.removeItem("dexScrollPosition");
-      }, 0);
-    }
+    // 페이지를 떠날 때 현재 스크롤 위치 저장
+    const handleBeforeUnload = () => {
+      window.history.replaceState(
+        { ...window.history.state, scrollY: window.pageYOffset },
+        ""
+      );
+    };
 
     document.addEventListener("click", handlePokemonClick);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
       document.removeEventListener("click", handlePokemonClick);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [location]);
 
