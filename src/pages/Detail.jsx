@@ -47,11 +47,16 @@ const Detail = () => {
     dispatch(removePokemon(pokemon.id));
   };
 
+  const handleBackClick = () => {
+    sessionStorage.setItem("dexScrollPosition", window.scrollY.toString());
+    navigate("/dex");
+  };
+
   return (
     <DetailContainer>
       <DetailCard>
         <DetailHeader>
-          <BackButton onClick={() => navigate("/dex")}>← 돌아가기</BackButton>
+          <BackButton onClick={handleBackClick}>← 돌아가기</BackButton>
         </DetailHeader>
 
         <DetailContent>
